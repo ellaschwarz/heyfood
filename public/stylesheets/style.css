@@ -1,0 +1,87 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,300,700);
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #ABEDC6;
+  font-family: 'Nunito', sans-serif;
+}
+
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 999;
+  width: 100%;
+  height: 70px;
+  background-color: #ff9900;
+  line-height: 70px;
+}
+
+nav .mini {
+  position: fixed;
+  top: 80px;
+  right: 10px;
+  background: #FFF;
+  padding: 40px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity .2s ease .2s;
+  transition: opacity .2s ease .2s;
+}
+
+nav .mini.visible {
+  padding: 40px;
+  opacity: 1;
+  visibility: visible;
+}
+
+nav .mini .products {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+nav .mini p {
+  font-size: 11px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+}
+
+nav ul {
+  float: left;
+}
+
+nav ul li {
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 50px;
+  color: #ABEDC6;
+  font-size: 12px;
+}
+
+.main-container {
+  margin-top: 40px;
+  overflow: auto;
+}
+
+.comment-wrapper .panel-body {
+  max-height: 650px;
+  overflow: auto;
+}
+
+.comment-wrapper .media-list .media img {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 25px;
+}
+/*# sourceMappingURL=style.css.map */

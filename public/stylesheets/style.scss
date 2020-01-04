@@ -1,0 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,300,700);
+
+$body:#ABEDC6;
+$nav:#ffffff;
+$contrast:#00fefe;
+$contrastopacity: rgba(0,254,254, .4);
+$productbg:rgba(172, 172, 172, 0.45);
+$quickViewBg:rgba(0,0,0,.90);
+$overlay:rgba(0,0,0,1);
+
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
+}
+
+body{
+	background-color: $body;
+	font-family: 'Nunito', sans-serif;
+}
+
+nav{
+	position: sticky;
+	z-index: 999;
+	width: 100%;
+	height: 70px;
+	background-color: rgb(255, 153, 0);
+	line-height: 70px;
+	.mini{
+		position: fixed;
+		top: 80px;
+		right:10px;
+		background: #FFF;
+		padding: 40px;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity .2s ease .2s;
+		&.visible{
+			padding: 40px;
+			opacity: 1;
+			visibility: visible;
+		}
+		.products{
+			font-weight: bold;
+			font-size: 14px;
+		}
+		p{
+			font-size: 11px;
+			display:block;
+			margin:0;
+			padding: 0;
+			line-height: 20px;
+		}
+	}
+	
+	ul{
+		float: left;
+		li{
+			font-weight: bold;
+			display: inline-block;
+			margin-left: 50px;
+			color: $body;
+			font-size: 12px;
+		}
+	}
+}
+
+.main-container {
+    margin-top: 40px;
+    overflow: auto;
+}
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+
+i {
+    cursor: pointer
+}
