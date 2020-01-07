@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
+const {checkAuthenticated} = require('../passport/authenticate');
 
 //Connection to restaurant database
 var connection = mysql.createConnection({
@@ -13,7 +14,7 @@ var connection = mysql.createConnection({
 });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', checkAuthenticated, function(req, res, next) {
   // res.render('index', { title: 'Express' });
     //Get all restaurants from database
   connection.query('SELECT * FROM Restauranttable', (err, rows, fields) => {
@@ -21,7 +22,10 @@ router.get('/', function(req, res, next) {
       //console.log(rows)
       // res.render('index', {rows: rows}).send(rows);
       //res.send(rows)
-      return res.render('index', {rows: rows});
+      return res.render('index', {
+        rows: rows, 
+        name: req.user.name
+      });
     } else {
       console.log(err)
       return;

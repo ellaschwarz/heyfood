@@ -20,12 +20,7 @@
   </head>
 
   <body>
-    <nav>
-      <div class="mini">
-        <p class="products">Empty</p>
-        <p class="names"></p>
-        <p class="miniprice"></p>
-      </div>
+    <nav class='navbar navbar-expand-lg navbar-light'>
 
       <ul>
         <li>All restaurants</li>
@@ -33,20 +28,19 @@
         <li>Top 10</li>
       </ul>
 
+      <p id="navrest"></p>
+
       <div class="fas fa-user-alt d-flex justify-content-right"></div>
+      <form action="/logout" method="POST" enctype="application/x-www-form-urlencoded">
+                  <input type="hidden" name="_method" value="DELETE"/>
+                  <button type="submit">Log out</button>
+      </form>
     </nav>
 
     <ul class="nav">
       <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          href="#"
-          role="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Sort by:</a
-        >
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+         aria-expanded="false">Sort by:</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">Price (Descending)</a>
           <a class="dropdown-item" href="#">Price (Ascending)</a>
@@ -62,8 +56,7 @@
         type="button"
         class="btn btn-primary float-right"
         data-toggle="modal"
-        data-target=".modal"
-      >
+        data-target=".modal">
         <i class="fas fa-plus"></i>Add restaurant
       </button>
     </ul>
@@ -74,14 +67,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Add new restaurant</h5>
+
             <button
               type="button"
               class="close"
               data-dismiss="modal"
-              aria-label="Close"
-            >
+              aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+
           </div>
           <div class="modal-body">
             <form action="/restaurants" method="POST" id="addrestaurant">
@@ -91,8 +85,7 @@
                   value="0"
                   class="form-control"
                   id="exampleFormControlInput0"
-                  name="idRestaurants"
-                />
+                  name="idRestaurants"/>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Restaurant name</label>
@@ -101,8 +94,7 @@
                   class="form-control"
                   id="exampleFormControlInput1"
                   placeholder="Type a name of a restaurant"
-                  name="Name"
-                />
+                  name="Name"/>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput2">Area</label>
@@ -111,8 +103,7 @@
                   class="form-control"
                   id="exampleFormControlInput1"
                   placeholder="In what area is the restaurant located? E.g. Södermalm, Vasastan or Enskede"
-                  name="Area"
-                />
+                  name="Area"/>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput3">Cuisine</label>
@@ -121,8 +112,7 @@
                   class="form-control"
                   id="exampleFormControlInput1"
                   placeholder="What type of food does the restaurant serve? E.g. Italian, Scandinavian or Indian"
-                  name="Cuisine"
-                />
+                  name="Cuisine"/>
               </div>
 
               <div class="form-group">
@@ -131,8 +121,7 @@
                   class="form-control"
                   id="exampleFormControlSelect1"
                   placeholder="Select a price range that suits accordingly to the menu"
-                  name="Price"
-                >
+                  name="Price">
                   <option>$</option>
                   <option>$$</option>
                   <option>$$$</option>
@@ -228,9 +217,7 @@
                   href="#"
                   class="btn btn-primary"
                   data-toggle="modal"
-                  data-target=".bd-example-modal-xl<%=[i]%>"
-                  >Leave a review</a
-                >
+                  data-target=".bd-example-modal-xl<%=[i]%>">Leave a review</a>
               </div>
             </div>
           </div>
@@ -240,105 +227,100 @@
      Card -->
 
         <!-- Extra large modal -->
+        <!-- REVIEW -->
         <div
           class="modal fade bd-example-modal-xl<%=[i]%>"
           tabindex="-1"
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
-          aria-hidden="true"
-        >
+          aria-hidden="true">
           <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
               <!-- COMMENT FORM  -->
-              <form>
-                <p><%= rows[i].idRestaurants %></p>
+              <form action="/reviews" method="POST" id="addreview">
+                    <div class="form-group">
+                      <input
+                      type="number"
+                      value="0"
+                      class="form-control"
+                      id="exampleFormControlInputid0"
+                      name="idReviews"></input>
+                    <input
+                      type="number"
+                      value="<%= rows[i].idRestaurants %>"
+                      class="form-control"
+                      id="exampleFormControlInputid0"
+                      name="idRestaurants"></input>
+                  </div>
+                    <div class="form-group">
+
+                  </div>
                 <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label"
-                    >Name</label
-                  >
+                  <label for="inputname3" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" />
+                    <input type="text" class="form-control" id="inputname3" name="username"/>
                   </div>
                 </div>
                 <fieldset class="form-group">
                   <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">
-                      Rate the restaurant
-                    </legend>
+                    <legend class="col-form-label col-sm-2 pt-0">Rate the restaurant</legend>
                     <div class="col-sm-10">
                       <div class="form-check form-check-inline">
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio1"
-                          value="option1"
-                        />
-                        <label class="form-check-label" for="inlineRadio1"
-                          >1 star</label
-                        >
+                          name="Rateing"
+                          id=""
+                          value="1"/>
+                        <label class="form-check-label" for="inlineRadio1">1 star</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input
                           class="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio2"
-                          value="option2"
-                        />
-                        <label class="form-check-label" for="inlineRadio2"
-                          >2 stars</label
-                        >
+                          id="Rateing"
+                          value="2"/>
+                        <label class="form-check-label" for="inlineRadio2">2 stars</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="inlineRadioOptions"
+                          name="Rateing"
                           id="inlineRadio3"
-                          value="option3"
-                        />
-                        <label class="form-check-label" for="inlineRadio3"
-                          >3 stars</label
-                        >
+                          value="3"/>
+                        <label class="form-check-label" for="inlineRadio3">3 stars</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="inlineRadioOptions"
+                          name="Rateing"
                           id="inlineRadio4"
-                          value="option4"
-                        />
-                        <label class="form-check-label" for="inlineRadio4"
-                          >4 stars</label
-                        >
+                          value="4"/>
+                        <label class="form-check-label" for="inlineRadio4">4 stars</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="inlineRadioOptions"
+                          name="Rateing"
                           id="inlineRadio5"
-                          value="option5"
-                        />
-                        <label class="form-check-label" for="inlineRadio5"
-                          >5 stars</label
-                        >
+                          value="5"/>
+                        <label class="form-check-label" for="inlineRadio5">5 stars</label>
                       </div>
                     </div>
                   </div>
                 </fieldset>
 
                 <div class="form-group">
-                  <label for="exampleFormControlTextarea1"
-                    >Leave a comment</label
-                  >
+                  <label for="exampleFormControlTextarea1">Leave a comment</label>
                   <textarea
                     class="form-control"
                     id="exampleFormControlTextarea1"
                     rows="3"
-                  ></textarea>
+                    name="Comment"></textarea>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-10">
@@ -360,15 +342,14 @@
                       </div>
                       <div class="panel-body">
                         <div class="clearfix"></div>
-                        <hr />
+                        <hr/>
                         <ul class="media-list">
                           <li class="media">
                             <a href="#" class="pull-left">
                               <img
                                 src="https://bootdey.com/img/Content/user_1.jpg"
                                 alt=""
-                                class="img-circle"
-                              />
+                                class="img-circle"/>
                             </a>
                             <div class="media-body">
                               <span class="text-muted pull-right">
@@ -387,8 +368,7 @@
                               <img
                                 src="https://bootdey.com/img/Content/user_2.jpg"
                                 alt=""
-                                class="img-circle"
-                              />
+                                class="img-circle"/>
                             </a>
                             <div class="media-body">
                               <span class="text-muted pull-right">
@@ -565,7 +545,7 @@
         <!-- RESTAURANT CARD END -->
       </div>
     </div>
-
+  <script src="javascripts/callingapi.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
