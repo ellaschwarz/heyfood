@@ -83,16 +83,14 @@
                 <input
                   type="hidden"
                   value="0"
-                  class="form-control"
-                  id="exampleFormControlInput0"
+                  class="form-control exampleFormControlInput0"
                   name="idRestaurants"/>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Restaurant name</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                  class="form-control exampleFormControlInput1"
                   placeholder="Type a name of a restaurant"
                   name="Name"/>
               </div>
@@ -100,8 +98,7 @@
                 <label for="exampleFormControlInput2">Area</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                  class="form-control exampleFormControlInput2"
                   placeholder="In what area is the restaurant located? E.g. Södermalm, Vasastan or Enskede"
                   name="Area"/>
               </div>
@@ -109,8 +106,7 @@
                 <label for="exampleFormControlInput3">Cuisine</label>
                 <input
                   type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                  class="form-control exampleFormControlInput3"
                   placeholder="What type of food does the restaurant serve? E.g. Italian, Scandinavian or Indian"
                   name="Cuisine"/>
               </div>
@@ -160,8 +156,7 @@
                 <img
                   class="card-img-top"
                   src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg"
-                  alt="Card image cap"
-                />
+                  alt="Card image cap"/>
                 <a href="#!">
                   <div class="mask rgba-white-slight"></div>
                 </a>
@@ -175,8 +170,7 @@
                   type="button"
                   class="btn btn-primary float-right"
                   data-toggle="modal"
-                  data-target="#exampleModalCenter<%=[i]%>"
-                >
+                  data-target="#exampleModalCenter<%=[i]%>">
                   <i class="fas fa-edit"></i>
                 </button>
 
@@ -210,7 +204,7 @@
                 <!-- Text -->
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
             content.</p> -->
-                <hr class="my-4" />
+                <hr class="my-4"/>
 
                 <!-- Button -->
                 <a
@@ -237,19 +231,19 @@
           <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
               <!-- COMMENT FORM  -->
-              <form action="/reviews" method="POST" id="addreview">
+              <form action="/reviews" method="POST" id="addreview<%=[i]%>">
                     <div class="form-group">
                       <input
-                      type="number"
+                      type="hidden"
                       value="0"
                       class="form-control"
-                      id="exampleFormControlInputid0"
+                      id="exampleFormControlInputidr<%=[i]%>"
                       name="idReviews"></input>
                     <input
-                      type="number"
+                      type="hidden"
                       value="<%= rows[i].idRestaurants %>"
                       class="form-control"
-                      id="exampleFormControlInputid0"
+                      id="exampleFormControlInputidre<%=[i]%>"
                       name="idRestaurants"></input>
                   </div>
                     <div class="form-group">
@@ -258,7 +252,7 @@
                 <div class="form-group row">
                   <label for="inputname3" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputname3" name="username"/>
+                    <input type="text" class="form-control" id="inputname<%=[i]%>" name="username"/>
                   </div>
                 </div>
                 <fieldset class="form-group">
@@ -270,7 +264,7 @@
                           class="form-check-input"
                           type="radio"
                           name="Rateing"
-                          id=""
+                          id="Rateing1_<%=[i]%>"
                           value="1"/>
                         <label class="form-check-label" for="inlineRadio1">1 star</label>
                       </div>
@@ -279,7 +273,7 @@
                           class="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="Rateing"
+                          id="Rateing2_<%=[i]%>"
                           value="2"/>
                         <label class="form-check-label" for="inlineRadio2">2 stars</label>
                       </div>
@@ -288,7 +282,7 @@
                           class="form-check-input"
                           type="radio"
                           name="Rateing"
-                          id="inlineRadio3"
+                          id="Rateing3_<%=[i]%>"
                           value="3"/>
                         <label class="form-check-label" for="inlineRadio3">3 stars</label>
                       </div>
@@ -297,7 +291,7 @@
                           class="form-check-input"
                           type="radio"
                           name="Rateing"
-                          id="inlineRadio4"
+                          id="Rateing4_<%=[i]%>"
                           value="4"/>
                         <label class="form-check-label" for="inlineRadio4">4 stars</label>
                       </div>
@@ -306,7 +300,7 @@
                           class="form-check-input"
                           type="radio"
                           name="Rateing"
-                          id="inlineRadio5"
+                          id="Rateing5_<%=[i]%>"
                           value="5"/>
                         <label class="form-check-label" for="inlineRadio5">5 stars</label>
                       </div>
@@ -318,15 +312,13 @@
                   <label for="exampleFormControlTextarea1">Leave a comment</label>
                   <textarea
                     class="form-control"
-                    id="exampleFormControlTextarea1"
+                    id="exampleFormControlTextarea1<%=[i]%>"
                     rows="3"
                     name="Comment"></textarea>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">
-                      Submit
-                    </button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </form>
@@ -344,63 +336,18 @@
                         <div class="clearfix"></div>
                         <hr/>
                         <ul class="media-list">
-                          <li class="media">
+
+                          <li class="media<%=[i]%>">
                             <a href="#" class="pull-left">
                               <img
-                                src="https://bootdey.com/img/Content/user_1.jpg"
+                                src=""
                                 alt=""
                                 class="img-circle"/>
                             </a>
                             <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted">30 min ago</small>
-                              </span>
-                              <strong class="text-success">@MartinoMont</strong>
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Lorem ipsum dolor sit amet,
-                                <a href="#">#consecteturadipiscing </a>.
-                              </p>
-                            </div>
-                          </li>
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_2.jpg"
-                                alt=""
-                                class="img-circle"/>
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted">30 min ago</small>
-                              </span>
-                              <strong class="text-success"
-                                >@LaurenceCorreil</strong
-                              >
-                              <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Lorem ipsum dolor
-                                <a href="#">#ipsumdolor </a>adipiscing elit.
-                              </p>
-                            </div>
-                          </li>
-                          <li class="media">
-                            <a href="#" class="pull-left">
-                              <img
-                                src="https://bootdey.com/img/Content/user_3.jpg"
-                                alt=""
-                                class="img-circle"
-                              />
-                            </a>
-                            <div class="media-body">
-                              <span class="text-muted pull-right">
-                                <small class="text-muted">30 min ago</small>
-                              </span>
-                              <strong class="text-success">@JohnNida</strong>
-                              <p>
-                                Lorem ipsum dolor <a href="#">#sitamet</a> sit
-                                amet, consectetur adipiscing elit.
-                              </p>
+                              <strong class="text-success<%=[i]%>"></strong>
+                              <h5 class="ratenumber<%=[i]%>"></h5>
+                              <p class="comment<%=[i]%>"></p>
                             </div>
                           </li>
                         </ul>
@@ -422,8 +369,7 @@
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
+          aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -434,8 +380,7 @@
                   type="button"
                   class="close"
                   data-dismiss="modal"
-                  aria-label="Close"
-                >
+                  aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -444,58 +389,50 @@
                 <form
                   action="/restaurants"
                   method="POST"
-                  id="editrestaurant<%=[i]%>"
-                >
+                  id="editrestaurant<%=[i]%>">
                   <input type="hidden" name="_method" value="put" />
                   <div class="form-group">
                     <input
                       type="hidden"
                       value="<%= rows[i].idRestaurants %>"
                       class="form-control"
-                      id="exampleFormControlInput0"
-                      name="idRestaurants"
-                    />
+                      id="exampleFormControlInput<%=[i]%>"
+                      name="idRestaurants"/>
                   </div>
                   <div class="form-group">
-                    <label for="exampleFormControlInputA"
-                      >Restaurant name</label
-                    >
+                    <label for="exampleFormControlInputA">Restaurant name</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="exampleFormControlInputA"
+                      id="exampleFormControlInputA<%=[i]%>"
                       placeholder="Type a name of a restaurant"
-                      name="Name"
-                    />
+                      name="Name"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlInputB">Area</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="exampleFormControlInputB"
+                      id="exampleFormControlInputB<%=[i]%>"
                       placeholder="In what area is the restaurant located? E.g. Södermalm, Vasastan or Enskede"
-                      name="Area"
-                    />
+                      name="Area"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlInputC">Cuisine</label>
                     <input
                       type="text"
                       class="form-control"
-                      id="exampleFormControlInputC"
+                      id="exampleFormControlInputC<%=[i]%>"
                       placeholder="What type of food does the restaurant serve? E.g. Italian, Scandinavian or Indian"
-                      name="Cuisine"
-                    />
+                      name="Cuisine"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlSelectD">Price range</label>
                     <select
                       class="form-control"
-                      id="exampleFormControlSelectD"
+                      id="exampleFormControlSelectD<%=[i]%>"
                       placeholder="Select a price range that suits accordingly to the menu"
-                      name="Price"
-                    >
+                      name="Price">
                       <option>$</option>
                       <option>$$</option>
                       <option>$$$</option>
@@ -512,17 +449,15 @@
                   action="/restaurants/<%=rows[i].idRestaurants%>"
                   method="POST"
                   id="deleterestaurant<%=[i]%>"
-                  enctype="application/x-www-form-urlencoded"
-                >
-                  <input type="hidden" name="_method" value="DELETE" />
+                  enctype="application/x-www-form-urlencoded">
+                  <input type="hidden" name="_method" value="DELETE"/>
                   <div class="form-group">
                     <input
                       type="hidden"
                       value="<%=rows[i].idRestaurants%>"
                       class="form-control"
-                      id="exampleFormControlInputid"
-                      name="idRestaurants"
-                    />
+                      id="exampleFormControlInputid<%=[i]%>"
+                      name="idRestaurants"/>
                   </div>
                   <button type="submit" class="btn btn-danger">
                     Delete restaurant
@@ -531,8 +466,7 @@
                 <button
                   type="button"
                   class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
+                  data-dismiss="modal">
                   Close
                 </button>
               </div>

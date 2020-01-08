@@ -57,6 +57,7 @@ connection.connect(function(err) {
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const restaurantsRouter = require("./routes/restaurants");
+const reviewsRouter = require("./routes/reviews");
 
 /* --------------------------------------------------------------------------*/
 
@@ -272,22 +273,10 @@ function checkNotAuthenticated(req, res, next) {
 /* ---------------------------------------------------------------------------------------*/
 //Routing for reviews
 
-// app.post('/reviews', (req, res) => {
-//   requestPromise('http://127.0.0.1:3000/reviews', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }, 
-//     body: JSON.stringify(req.body),
-//   }).then(() => {
-//     res.redirect('index')
-//   })
-// });
-
-//Get restaurants
+//Get reviews
 app.get("/reviews", (req, res) => {
   //Get all restaurants from database
-  connection.query("SELECT * FROM Reviews", (err, rows, fields) => {
+  connection.query("SELECT * FROM Reviews rev INNER JOIN Restauranttable res ON rev.idRestaurants = res.idRestaurants ORDER BY res.idRestaurants", (err, rows, fields) => {
     if (!err) {
       //res.send(rows);
       res.status(200).json(rows);
@@ -328,22 +317,12 @@ app.post("/reviews", (req, res) => {
 });
 
 
-
-// app.post('/restaurants', (req, res) => {
-//   requestPromise('http://127.0.0.1:3000/restaurants', {
-//       method: 'POST',
-//       headers: {
-//           'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(req.body),
-//   }).then(() => {
-//       res.redirect('index')
-//   })
 /* ---------------------------------------------------------------------------------------*/
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/restaurants", restaurantsRouter);
+app.use("/reviews", reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

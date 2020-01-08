@@ -84,4 +84,13 @@ nav ul li {
   border-bottom: 1px dashed #efefef;
   margin-bottom: 25px;
 }
+
+i {
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+  list-style: none;
+}
 /*# sourceMappingURL=style.css.map */

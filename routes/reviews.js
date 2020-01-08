@@ -1,42 +1,33 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
-const requestPromise = require('request-promise');
+const mysql = require('mysql');
+const {checkAuthenticated} = require('../passport/authenticate');
 
-router.use(express.static(path.join(__dirname, '/public/')));
-router.set('views', path.join(__dirname, 'views'));
-router.set('view engine', 'ejs');
-
-router.get('/', function(req, res, next) {
-  res.render('index', {title: 'Express'}
-  );
+//Connection to restaurant database
+var connection = mysql.createConnection({
+  socketPath: '/Users/ellaschwarz/Library/Application Support/Local/run/VwNdX9N8O/mysqld.sock',
+  user: 'root',
+  password: 'root',
+  database: 'Restaurants',
+  debug: false,
+  multipleStatements: true
 });
 
-router.use(bodyParser.urlencoded({
-    extended: false
-}));
-
-router.post('/reviews', (req, res) => {
-    requestPromise('http://127.0.0.1:3000/reviews', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(req.body),
-    }).then(() => {
-        res.redirect('index')
-    })
-
-
-router.get('/index', (req, res) => {
-    requestPromise('http://127.0.0.1:3000/index', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(messages => {
-        res.render('index', { "messages": JSON.parse(messages) })
-    });
-});
+// /* GET reviews page. */
+// router.get('/', checkAuthenticated, function(req, res, next) {
+//     //Get all reviews from database
+//   connection.query('SELECT * FROM Reviews', (err, reviews, fields) => {
+//     if (!err) {
+//       console.log(reviews)
+//       return res.render('index', {
+//         reviews: reviews, 
+        
+//       });
+//     } else {
+//       console.log(err)
+//       return;
+//     }
+//   });
+// });
 
 module.exports = router;
