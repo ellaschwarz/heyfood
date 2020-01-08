@@ -13,12 +13,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
          let i = 0;
          
-         reviews.forEach(element => {
+         restaurants.forEach(element => {
             
-           // for(let i = 0; i < reviews.length; i++) {
             let restaurantReviews = reviews.filter(reviews => reviews.idRestaurants === restaurants[i].idRestaurants);
-            console.log(restaurantReviews[0]);
-            //let node = document.createElement('P')
+            console.log(restaurantReviews);
         
             for(let y = 0; y < restaurantReviews.length; y++) {
 
@@ -29,13 +27,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
             let atag = document.createElement('A');
             atag.setAttribute('class', 'pull-left');
-            //let newa = document.querySelector('.pull-left')
             
             let imgtag = document.createElement('IMG');
             imgtag.setAttribute('class', '.img-circle');
             imgtag.setAttribute('src','https://bootdey.com/img/Content/user_1.jpg');
             atag.appendChild(imgtag);
-            //let newimg = document.querySelector('.img-circle')
             
             let divtag = document.createElement('DIV');
             divtag.setAttribute('class','media-body');
@@ -56,20 +52,46 @@ document.addEventListener('DOMContentLoaded', (e) => {
             let ptag = document.createElement('P');
             ptag.setAttribute('class', `.comment${i}`);
             ptag.innerHTML = JSON.stringify(restaurantReviews[y].Comment);
-            // let newComment = document.querySelector(`.comment${i}`);
            
             divtag.append(strongtag, h5tag, ptag);
-            // let newUsername = document.querySelector(`.text-success${i}`);
             
             newBlock.append(atag, divtag);
-            //newComment.appendChild(ptag);
            }
-
-           i++; 
-            
-        });
-        
+           i++;    
+        });   
+        getAvgRateing(reviews);
     }
 
     getReviews();
+
+
+    async function getAvgRateing (reviews){
+        let request3 = await fetch('http://127.0.0.1:3000/reviews/avgrates');
+        const average = await request3.json();
+
+        let request2 = await fetch ('http://127.0.0.1:3000/restaurants');
+        const restaurants = await request2.json();
+
+        let i = 0;
+
+        restaurants.forEach(element => {
+        let averageReviews = average.filter(average => average.idRestaurants === restaurants[i].idRestaurants);
+        for(let j = 0; j < averageReviews.length; j++) {
+            let avg = document.querySelector(`.avgrateing${i}`);
+            
+            let spantag = document.createElement('SPAN');
+            
+            spantag.innerHTML = averageReviews[j].Avg_Rateing;
+            
+            avg.appendChild(spantag);
+            
+        }
+
+        console.log(average);
+        i++;
+     });
+
+    }
+
+    
 });

@@ -10,31 +10,26 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css?family=Sniglet:800&display=swap" rel="stylesheet">
     <script
       src="https://kit.fontawesome.com/3a12e18fd4.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
     <script src="jquery-3.4.1.min.js"></script>
   </head>
 
   <body>
-    <nav class='navbar navbar-expand-lg navbar-light'>
-
-      <ul>
-        <li>All restaurants</li>
-        <li>Top 10</li>
-        <li>Top 10</li>
-      </ul>
-
+    <nav class='navbar sticky-top navbar-expand-lg navbar-light'>
       <p id="navrest"></p>
 
-      <div class="fas fa-user-alt d-flex justify-content-right"></div>
+      <h1 class="justify-content-center">heyFood</h1>
+     <ul class="justify-content-end">
       <form action="/logout" method="POST" enctype="application/x-www-form-urlencoded">
                   <input type="hidden" name="_method" value="DELETE"/>
-                  <button type="submit">Log out</button>
+                  <button type="submit" class="signout"><i class="fas fa-sign-out-alt"></i></button>
       </form>
+    </ul>
+
     </nav>
 
     <ul class="nav">
@@ -49,7 +44,7 @@
           <a class="dropdown-item" href="#">Area (ABC)</a>
           <a class="dropdown-item" href="#">Cuisine (ABC)</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
+          <a class="dropdown-item" href="#">Top 10</a>
         </div>
       </li>
       <button
@@ -57,8 +52,7 @@
         class="btn btn-primary float-right"
         data-toggle="modal"
         data-target=".modal">
-        <i class="fas fa-plus"></i>Add restaurant
-      </button>
+        <i class="fas fa-plus"></i>Add restaurant</button>
     </ul>
 
     <!-- ADD NEW RESTAURANT MODAL -->
@@ -195,7 +189,8 @@
                     <i class="fas fa-star-half-alt amber-text"></i>
                   </li>
                   <li class="list-inline-item">
-                    <p class="text-muted">4.5 (413)</p>
+                    <p class="text-muted avgrateing<%=[i]%>"></p>
+                    <p class="text-muted noComments<%=[i]%>"></p>
                   </li>
                 </ul>
                 <p class="mb-2">Cuisine: <%= rows[i].Cuisine %></p>
@@ -272,7 +267,7 @@
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="inlineRadioOptions"
+                          name="Rateing"
                           id="Rateing2_<%=[i]%>"
                           value="2"/>
                         <label class="form-check-label" for="inlineRadio2">2 stars</label>

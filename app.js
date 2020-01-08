@@ -56,10 +56,9 @@ connection.connect(function(err) {
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const restaurantsRouter = require("./routes/restaurants");
 const reviewsRouter = require("./routes/reviews");
 
-/* --------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------*/
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -101,7 +100,7 @@ app.use(
 //Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
-/*-----------------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------*/
 
 //Get restaurants
 app.get("/restaurants", (req, res) => {
@@ -203,7 +202,7 @@ app.put("/restaurants", (req, res) => {
   );
 });
 
-/* ------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
 //Routing for login and register
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
@@ -287,6 +286,20 @@ app.get("/reviews", (req, res) => {
   });
 });
 
+//Get rating
+app.get("/reviews/avgrates", (req, res) => {
+  //Get all restaurants from database
+  connection.query(" SELECT idRestaurants, round(avg(Rateing), 2) as Avg_Rateing FROM Restaurants.Reviews GROUP BY Reviews.idRestaurants;", (err, avg, fields) => {
+    if (!err) {
+      //res.send(rows);
+      res.status(200).json(avg);
+    } else {
+      console.log(err);
+      return;
+    }
+  });
+});
+
 //Add a review
 app.post("/reviews", (req, res) => {
   console.log("Entering the post-method for reviews");
@@ -321,7 +334,6 @@ app.post("/reviews", (req, res) => {
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/restaurants", restaurantsRouter);
 app.use("/reviews", reviewsRouter);
 
 // catch 404 and forward to error handler
