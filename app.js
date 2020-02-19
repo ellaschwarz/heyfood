@@ -36,13 +36,13 @@ const users = [];
 
 //Connection to restaurant database
 var connection = mysql.createConnection({
-  socketPath:
-    "/Users/ellaschwarz/Library/Application Support/Local/run/VwNdX9N8O/mysqld.sock",
-  user: "root",
-  password: "root",
-  database: "Restaurants",
-  debug: false,
+  host: "xav-p-mariadb01.xavizus.com",
+  user: "ella",
+  password: "xdWThTEK9bMxqLXk",
+  database: "ella",
+  port: 16200,
   multipleStatements: true
+
 });
 
 //Error handler
@@ -289,7 +289,7 @@ app.get("/reviews", (req, res) => {
 //Get rating
 app.get("/reviews/avgrates", (req, res) => {
   //Get all restaurants from database
-  connection.query(" SELECT idRestaurants, round(avg(Rateing), 2) as Avg_Rateing FROM Restaurants.Reviews GROUP BY Reviews.idRestaurants;", (err, avg, fields) => {
+  connection.query(" SELECT idRestaurants, round(avg(Rateing), 2) as Avg_Rateing FROM ella.Reviews GROUP BY Reviews.idRestaurants;", (err, avg, fields) => {
     if (!err) {
       //res.send(rows);
       res.status(200).json(avg);

@@ -5,10 +5,11 @@ const {checkAuthenticated} = require('../passport/authenticate');
 
 //Connection to restaurant database
 var connection = mysql.createConnection({
-  socketPath: '/Users/ellaschwarz/Library/Application Support/Local/run/VwNdX9N8O/mysqld.sock',
-  user: 'root',
-  password: 'root',
-  database: 'Restaurants',
+  host: "xav-p-mariadb01.xavizus.com",
+  user: "ella",
+  password: "xdWThTEK9bMxqLXk",
+  database: "ella",
+  port: 16200,
   debug: false,
   multipleStatements: true
 });
