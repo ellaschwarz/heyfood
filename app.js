@@ -17,7 +17,7 @@ const cors = require("cors");
 const methodOverride = require("method-override");
 
 //For passport and configuration
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
