@@ -1,7 +1,7 @@
 //This loads in our different environment variables and set them in process.env
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+// if (process.env.NODE_ENV !== "production") {
+//   require("dotenv").config();
+// }
 
 const createError = require("http-errors");
 const express = require("express");
