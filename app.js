@@ -353,7 +353,7 @@ app.use(function(err, req, res, next) {
 });
 
 //Setting up the server
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log("Listening on port: " + PORT);
 });
 
