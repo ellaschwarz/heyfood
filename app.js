@@ -19,9 +19,10 @@ const methodOverride = require("method-override");
 //For passport and configuration
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const flash = require("express-flash");
+//const flash = require("express-flash");
 const session = require("express-session");
 const initializePassport = require("./passport-config");
+
 initializePassport(
   passport,
   email => users.find(user => user.email === email),
@@ -72,12 +73,12 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 //For passport
-app.use(flash());
+//app.use(flash());
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
   })
 );
 app.use(passport.initialize());
@@ -249,7 +250,7 @@ app.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
-    failureFlash: true
+    //failureFlash: true
   })
 );
 
